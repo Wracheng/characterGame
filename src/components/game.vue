@@ -31,6 +31,8 @@ export default {
 .game {
   width: 100%;
   height: 100%;
-  background-color: #f99;
+  /* background-color: #f99; */
+  background:url('../assets/img/fight.jpg') no-repeat;
+  background-size: 100% 100%;
 }
 </style>

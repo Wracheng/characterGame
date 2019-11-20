@@ -19,7 +19,7 @@
         {{ item }}
       </div>
     </div>
-    <div class="restart" @click="restart">重新开始</div>
+    <div class="restart" @click="restart"></div>
   </div>
 </template>
 
@@ -133,7 +133,7 @@ export default {
     top: 0;
     width: 100px;
     height: 100px;
-    background-color: yellow;
+    background:url('../assets/img/restart.png') no-repeat center center;
   }
   .restart:hover {
     cursor: pointer;

@@ -1,16 +1,16 @@
 <template>
   <div class="part">
-    <div class="time">
-      <div class="leftTime process">
+    <!-- <div class="time">
+      <div class="leftTime process" :style="''">
         <div class="process"></div>
       </div>
       <div class="comboTime process">
         <div class="process"></div>
       </div>
-    </div>
+    </div> -->
+    <div class="time">{{ time }}</div>
     <div class="score">{{ score }}</div>
     <div class="level">level:{{ level }}</div>
-    <div>{{ combo }}</div>
   </div>
 </template>
 
@@ -65,6 +65,9 @@ export default {
       this.timer()
     })
   },
+  beforeDestroy () {
+    clearInterval(this.timeId)
+  },
   methods: {
     timer () {
       if (this.timeId) {
@@ -86,7 +89,28 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style scoped lang="less">
+@keyframes timeReduce {
+  0% {
+    width: 100%;
+  }
+  80% {
+    width: 80%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(255, 51, 0) 0%,
+      rgb(248, 43, 43) 100%
+    );
+  }
+  100% {
+    width: 0%;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(255, 51, 0) 0%,
+      rgb(248, 43, 43) 100%
+    );
+  }
+}
 .part {
   display: flex;
   /* background-color: deeppink; */
@@ -96,7 +120,7 @@ export default {
 .level {
   width: 33.3333%;
   height: 50px;
-  background-color: blue;
+  // background-color: blue;
   font-weight: bold;
   font-size: 30px;
   line-height: 50px;
@@ -113,6 +137,7 @@ export default {
     rgb(0, 217, 255) 0%,
     skyblue 100%
   );
+  animation: timeReduce 20s;
 }
 .comboTime  {
   background-image: linear-gradient(
@@ -120,6 +145,7 @@ export default {
     rgb(255, 102, 0) 0%,
     rgb(235, 167, 135) 100%
   );
+  animation: timeReduce 5s;
 }
 .process  {
   width: 200px;
